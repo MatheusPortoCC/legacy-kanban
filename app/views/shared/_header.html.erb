@@ -1,0 +1,18 @@
+<div class="relative bg-blue-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex justify-between items-center py-6 md:space-x-10">
+      <div class="flex lg:flex-1">
+        <span class="text-white text-2xl">Legacy Kanban</span>
+      </div>
+      <div class="flex justify-center md:space-x-3">
+        <%= link_to edit_user_registration_path() do %>
+          <i class="fas fa-cog text-white text-2xl"></i>
+        <% end %>
+
+        <%= button_to destroy_user_session_path(), method: :delete do %>
+          <i class="fas fa-sign-out-alt text-white text-2xl"></i>
+        <% end %>
+      </div>
+   </div>
+  </div>
+</div>
