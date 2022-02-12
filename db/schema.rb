@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_29_223422) do
+ActiveRecord::Schema.define(version: 2022_02_05_145946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,14 +53,31 @@ ActiveRecord::Schema.define(version: 2022_01_29_223422) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "kanbans", force: :cascade do |t|
+  create_table "boards", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
+  create_table "columns", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "board_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_columns_on_board_id"
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "column_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["column_id"], name: "index_tasks_on_column_id"
   end
 
   create_table "users", force: :cascade do |t|

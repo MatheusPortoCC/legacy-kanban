@@ -12,10 +12,10 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/kanbans", type: :request do
+RSpec.describe "/boards", type: :request do
   
   # This should return the minimal set of attributes required to create a valid
-  # Kanban. As you add validations to Kanban, be sure to
+  # Board. As you add validations to Board, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -27,58 +27,58 @@ RSpec.describe "/kanbans", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Kanban.create! valid_attributes
-      get kanbans_url
+      Board.create! valid_attributes
+      get boards_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      kanban = Kanban.create! valid_attributes
-      get kanban_url(kanban)
+      board = Board.create! valid_attributes
+      get board_url(board)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_kanban_url
+      get new_board_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      kanban = Kanban.create! valid_attributes
-      get edit_kanban_url(kanban)
+      board = Board.create! valid_attributes
+      get edit_board_url(board)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Kanban" do
+      it "creates a new Board" do
         expect {
-          post kanbans_url, params: { kanban: valid_attributes }
-        }.to change(Kanban, :count).by(1)
+          post boards_url, params: { board: valid_attributes }
+        }.to change(Board, :count).by(1)
       end
 
-      it "redirects to the created kanban" do
-        post kanbans_url, params: { kanban: valid_attributes }
-        expect(response).to redirect_to(kanban_url(Kanban.last))
+      it "redirects to the created board" do
+        post boards_url, params: { board: valid_attributes }
+        expect(response).to redirect_to(board_url(Board.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Kanban" do
+      it "does not create a new Board" do
         expect {
-          post kanbans_url, params: { kanban: invalid_attributes }
-        }.to change(Kanban, :count).by(0)
+          post boards_url, params: { board: invalid_attributes }
+        }.to change(Board, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post kanbans_url, params: { kanban: invalid_attributes }
+        post boards_url, params: { board: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -90,42 +90,42 @@ RSpec.describe "/kanbans", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested kanban" do
-        kanban = Kanban.create! valid_attributes
-        patch kanban_url(kanban), params: { kanban: new_attributes }
-        kanban.reload
+      it "updates the requested board" do
+        board = Board.create! valid_attributes
+        patch board_url(board), params: { board: new_attributes }
+        board.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the kanban" do
-        kanban = Kanban.create! valid_attributes
-        patch kanban_url(kanban), params: { kanban: new_attributes }
-        kanban.reload
-        expect(response).to redirect_to(kanban_url(kanban))
+      it "redirects to the board" do
+        board = Board.create! valid_attributes
+        patch board_url(board), params: { board: new_attributes }
+        board.reload
+        expect(response).to redirect_to(board_url(board))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        kanban = Kanban.create! valid_attributes
-        patch kanban_url(kanban), params: { kanban: invalid_attributes }
+        board = Board.create! valid_attributes
+        patch board_url(board), params: { board: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested kanban" do
-      kanban = Kanban.create! valid_attributes
+    it "destroys the requested board" do
+      board = Board.create! valid_attributes
       expect {
-        delete kanban_url(kanban)
-      }.to change(Kanban, :count).by(-1)
+        delete board_url(board)
+      }.to change(Board, :count).by(-1)
     end
 
-    it "redirects to the kanbans list" do
-      kanban = Kanban.create! valid_attributes
-      delete kanban_url(kanban)
-      expect(response).to redirect_to(kanbans_url)
+    it "redirects to the boards list" do
+      board = Board.create! valid_attributes
+      delete board_url(board)
+      expect(response).to redirect_to(boards_url)
     end
   end
 end

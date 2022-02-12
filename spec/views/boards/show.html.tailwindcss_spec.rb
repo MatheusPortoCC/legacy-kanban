@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "kanbans/show", type: :view do
+RSpec.describe "boards/show", type: :view do
   before(:each) do
-    @kanban = assign(:kanban, Kanban.create!())
+    @board = assign(:board, Board.create!())
   end
 
   it "renders attributes in <p>" do

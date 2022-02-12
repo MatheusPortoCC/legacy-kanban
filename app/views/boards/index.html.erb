@@ -1,0 +1,21 @@
+<div class="min-w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      My boards
+    </h2>
+
+    <div id="boards" class="min-w-full">
+      <%= render @boards %>
+    </div>
+
+    <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center">
+        <%= link_to :back do %>
+          <i class="fas fa-undo-alt"></i>
+        <% end %>
+      </div>
+
+      <%= button_to 'New board', new_board_path, method: :get, class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 cursor-pointer" %>
+    </div>
+  </div>
+</div>

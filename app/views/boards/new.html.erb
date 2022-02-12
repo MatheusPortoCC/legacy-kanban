@@ -1,0 +1,17 @@
+<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      New board
+    </h2>
+
+    <%= render "form", board: @board %>
+
+    <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center">
+        <%= link_to :back do %>
+          <i class="fas fa-undo-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

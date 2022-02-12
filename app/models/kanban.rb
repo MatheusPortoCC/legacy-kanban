@@ -1,2 +1,0 @@
-class Kanban < ApplicationRecord
-end
