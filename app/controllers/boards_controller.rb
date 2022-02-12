@@ -8,8 +8,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1 or /boards/1.json
   def show
-    new_column = @board.columns.build
-    new_column.tasks.build
+    @board.columns.build
   end
 
   # GET /boards/new
@@ -70,15 +69,7 @@ class BoardsController < ApplicationController
     def board_params
       params.fetch(:board, {}).permit(
         :name,
-        :description, 
-        columns_attributes: [
-          :id,
-          :name,
-          tasks_attributes: [
-            :id,
-            :name
-          ]
-        ]
+        :description
       )
     end
 end
