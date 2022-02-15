@@ -30,7 +30,7 @@ class ColumnsController < ApplicationController
         format.html { redirect_to board_url(@column.board), notice: "Column was successfully created." }
         format.json { render :show, status: :created, location: @column.board }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to board_url(@column.board), notice: "Some error occurred when creating the column." }
         format.json { render json: @column.errors, status: :unprocessable_entity }
       end
     end
@@ -38,13 +38,23 @@ class ColumnsController < ApplicationController
 
   # PATCH/PUT /columns/1 or /columns/1.json
   def update
-    respond_to do |format|
-      if @column.update!(column_params)
-        format.html { redirect_to board_url(@column.board), notice: "Column was successfully updated." }
-        format.json { render :show, status: :ok, location: @column.board }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @column.errors, status: :unprocessable_entity }
+    if column_params[:tasks_attributes][:change_only_column]
+      task = Task.find(column_params[:tasks_attributes][:id])
+
+      task = task.update(column: @column)
+    else
+      column_updated = @column.update(column_params)
+    end
+
+    unless task
+      respond_to do |format|
+        if column_updated
+          format.html { redirect_to board_url(@column.board), notice: "Column was successfully updated." }
+          format.json { render :show, status: :ok, location: @column.board }
+        else
+          format.html { redirect_to board_url(@column.board), notice: "Some error occurred when updating the column." }
+          format.json { render json: @column.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -71,8 +81,10 @@ class ColumnsController < ApplicationController
         :name,
         :board_id,
         tasks_attributes: [
+          :id, 
           :name,
-          :column_id
+          :column_id,
+          :change_only_column
         ]
       )
     end
