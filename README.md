@@ -14,9 +14,8 @@ Technologies:
 
 ## Preview
 
-Click on the image and you will be redirected to the preview
+https://user-images.githubusercontent.com/61555155/153972873-36419ddc-bf11-463e-b3dd-96af99d7a5af.mp4
 
-[![Everything Is AWESOME](https://img.youtube.com/vi/bON1huVo_EI/0.jpg)](https://www.youtube.com/watch?v=bON1huVo_EI "Everything Is AWESOME")
 
 ## Roadmap
 
