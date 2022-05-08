@@ -21,7 +21,7 @@ https://user-images.githubusercontent.com/61555155/153972873-36419ddc-bf11-463e-
 
  * [x] Sign-in and sign-up with Devise
  * [x] Create boards, columns and tasks
- * [x] Dragging tasks between columns in the panel
- * [ ] Add ActionCable to update other browsers automatically
+ * [x] Dragging tasks between columns in the board
+ * [x] Add Websocket to update other browsers automatically
  * [ ] Improve UI/UX
  * [ ] ...searching for new suggestions

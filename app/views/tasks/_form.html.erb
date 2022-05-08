@@ -1,17 +1,12 @@
-<%= form_with(model: task, class: "contents") do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<%= form_with(model: task, url: board_tasks_path(@board), class: "contents flex flex-col pb-2") do |form| %>
+  <div class="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer border border-blue-400 group">
+    <%= form.text_field :name, class: "rounded-lg cursor-pointer border border-blue-400 w-full mt-3 text-sm font-medium", placeholder: "New task name" %>
+    <%= form.hidden_field :column_id, value: task.column_id %>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
+      <div class="flex items-center">
+        <%= form.submit "Save", class: "rounded-lg text-xs px-4 py-2 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

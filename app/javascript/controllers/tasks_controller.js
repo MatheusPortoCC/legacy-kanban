@@ -6,7 +6,7 @@ export default class extends Controller {
     event.target.classList.add('is-dragging')
 
     event.dataTransfer.effectAllowed = "move"
-    event.dataTransfer.setData('text/plain', event.target.getAttribute('data-task-id'))
+    event.dataTransfer.setData('task-id', event.target.getAttribute('data-task-id'))
   }
 
   drag(event) {
@@ -28,7 +28,7 @@ export default class extends Controller {
 
     event.target.classList.remove('border-dotted')
 
-    fetch(event.currentTarget.closest('form').action, {
+    fetch(window.location.pathname + '/tasks', {
       method: "PATCH",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
@@ -36,14 +36,13 @@ export default class extends Controller {
         "X-CSRF-Token": document.head.querySelector("[name='csrf-token']").content
       },
       body: JSON.stringify({
-        column: {
-          tasks_attributes: {
-            change_only_column: true,
-            id: event.dataTransfer.getData('text/plain')
-          }
+        id: event.dataTransfer.getData('task-id'),
+        task: {
+          column_id: event.currentTarget.closest('.column').dataset.columnId
         }
       }),
     })
+    isDraggingCard.remove()
   }
 
   dragLeave(event) {

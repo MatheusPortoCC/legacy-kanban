@@ -1,5 +1,5 @@
-<div class= "flex flex-grow px-10 mt-4 space-x-6 overflow-auto">
-  <% @board.columns.each do |column| %>
-    <%= render "boards/columns/form", board: @board, column: column %>
-  <% end %>
+<div class= "flex flex-grow justify-center px-10 mt-4 space-x-6 overflow-auto">
+  <%= turbo_stream_from @board %>
+  <%= render @board.columns %>
+  <%= render 'columns/form', column: Column.new %>
 </div>

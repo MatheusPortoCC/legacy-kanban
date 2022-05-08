@@ -1,6 +1,7 @@
 class ColumnsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_column, only: %i[ show edit update destroy ]
+  before_action :set_column, only: %i[ show ]
+  before_action :set_board, only: %i[ create ]
 
   # GET /columns or /columns.json
   def index
@@ -24,6 +25,7 @@ class ColumnsController < ApplicationController
   # POST /columns or /columns.json
   def create
     @column = Column.new(column_params)
+    @column.board = @board
 
     respond_to do |format|
       if @column.save
@@ -75,17 +77,14 @@ class ColumnsController < ApplicationController
       @column = Column.find(params[:id])
     end
 
+    def set_board
+      @board = Board.find(params[:board_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def column_params
       params.fetch(:column, {}).permit(
-        :name,
-        :board_id,
-        tasks_attributes: [
-          :id, 
-          :name,
-          :column_id,
-          :change_only_column
-        ]
+        :name
       )
     end
 end
