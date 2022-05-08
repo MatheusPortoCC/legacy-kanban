@@ -1,4 +1,4 @@
-<%= form_with(model: task, url: board_tasks_path(@board), class: "contents flex flex-col pb-2") do |form| %>
+<%= form_with(model: task, url: board_tasks_path(@board.nil? ?  task.column.board : @board), class: "contents flex flex-col pb-2") do |form| %>
   <div class="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer border border-blue-400 group">
     <%= form.text_field :name, class: "rounded-lg cursor-pointer border border-blue-400 w-full mt-3 text-sm font-medium", placeholder: "New task name" %>
     <%= form.hidden_field :column_id, value: task.column_id %>

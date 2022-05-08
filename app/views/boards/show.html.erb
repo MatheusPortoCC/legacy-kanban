@@ -1,5 +1,6 @@
-<div class= "flex flex-grow justify-center px-10 mt-4 space-x-6 overflow-auto">
-  <%= turbo_stream_from @board %>
+<%= turbo_stream_from @board %>
+
+<div id="board_<%= @board.id %>" class= "flex flex-grow justify-center px-10 mt-4 space-x-6">
   <%= render @board.columns %>
   <%= render 'columns/form', column: Column.new %>
 </div>

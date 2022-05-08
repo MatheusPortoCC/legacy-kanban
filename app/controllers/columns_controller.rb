@@ -10,7 +10,6 @@ class ColumnsController < ApplicationController
 
   # GET /columns/1 or /columns/1.json
   def show
-    @column.columns.build
   end
 
   # GET /columns/new
@@ -27,15 +26,7 @@ class ColumnsController < ApplicationController
     @column = Column.new(column_params)
     @column.board = @board
 
-    respond_to do |format|
-      if @column.save
-        format.html { redirect_to board_url(@column.board), notice: "Column was successfully created." }
-        format.json { render :show, status: :created, location: @column.board }
-      else
-        format.html { redirect_to board_url(@column.board), notice: "Some error occurred when creating the column." }
-        format.json { render json: @column.errors, status: :unprocessable_entity }
-      end
-    end
+    @column.save
   end
 
   # PATCH/PUT /columns/1 or /columns/1.json
